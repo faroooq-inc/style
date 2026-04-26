@@ -2,8 +2,13 @@
 import os
 import time
 
-logo = '''
+# ANSI رنګونه
+RED_BG = "\033[41m"
+WHITE_TEXT = "\033[97m"
+RESET = "\033[0m"
+GREEN_TEXT = "\033[1;32m"
 
+logo = '''
 [+]
 | ███████╗ █████╗ █████╗░░░██████╗  ██████╗░░░██████╗░░░░░░░░░░██╗███╗░░██╗░█████╗░░░░░  
 | ██╔════╝██╔══██╗██╔══██╗██╔═══██╗██╔═══██╗ ██╔═══██╗░░░░░░░░░██║████╗░██║██╔══██╗░░░░ 
@@ -12,11 +17,10 @@ logo = '''
 | ██║░░░░ ██║░░██║██║░░██║╚██████╔╝╚██████╔╝░╚██████╔╝░░░░░░░░░██║██║░╚███║╚█████╔╝░░░░  
 | ╚═╝░░░░ ╚═╝░░╚═╝╚═╝░░╚═╝░╚═════╝░░╚═════╝░░░╚══▀▀═╝░░░░░░░░░░╚═╝╚═╝░░╚══╝░╚════╝░░░░░  V2.7
 
-
-[+] Title    : AllHackingTools - Tool for hacking  -  ⁣ATTENTION! The author of this article is not respo-
-[+] Github   : https://github.com/mishakorzik  -  nsi⁣ble responsible for any consequences of reading it. 
+[+] Title    : AllHackingTools - Tool for hacking  -  ATTENTION! The author of this article is not respo-
+[+] Github   : https://github.com/mishakorzik  -  nsible responsible for any consequences of reading it. 
 [+] Coded By : Misha Korzhik (Міша Коржик)  -  All materials are provided for educational purposes only! 
-[+]———————-——-–————————-—-–———-——————-—–————-————-—–———————-——–—————–-——[+]
+[+]-------+---------+---------+---------+---------+---------+---------+---------+-------[+]
 
 [01] Quick Start - on/off
 [02] Servers Setting
@@ -29,16 +33,26 @@ logo = '''
 def clear():
     os.system("clear")
 
+def print_red_bg(text):
+    """د سور شالید سره متن چاپول"""
+    print(f"{RED_BG}{WHITE_TEXT}{text}{RESET}")
+
 def banner():
-    os.system("echo \"{}\" | lolcat -p 1.6".format(logo))
-def show_ansi():
-    try:
-        with open("assets/ansi-art.utf.ans.txt", "r", encoding="utf-8", errors="ignore") as f:
-            print(f.read())
-    except:
-        print("ANSI file not found!")
+    # که lolcat نصب دی، نو د سور شالید سره به ښه نه ښکاري
+    # نو دوه انتخابونه:
+    
+    # انتخاب 1: یوازې د سور شالید سره (بې lolcat)
+    for line in logo.split('\n'):
+        if line.strip():
+            print_red_bg(line)
+        else:
+            print()
+    
+    # انتخاب 2: که lolcat وساتئ، نو سور شالید به اغیزمن نه وي
+    # os.system(f"echo \"{logo}\" | lolcat")
+
 def welcome():
-    print("\033[1;32mWelcome to FAROOQ Tool...\033[0m")
+    print(f"{GREEN_TEXT}Welcome to FAROOQ Tool...{RESET}")
     time.sleep(1)
 
 def main():
@@ -46,8 +60,7 @@ def main():
     welcome()
     time.sleep(0.5)
     clear()
-    show_ansi() 
     banner()
 
 if __name__ == "__main__":
-    main()
+    main() 
