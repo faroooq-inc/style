@@ -15,12 +15,28 @@ DARK_GOLD = "\033[38;2;184;134;11m"     # تیاره طلایی (Dark Goldenrod)
 LIGHT_GOLD = "\033[38;2;255;223;0m"     # روښانه طلایی
 RED_GOLD = "\033[38;2;255;69;0m"        # سور-طلایی
 
-# د بکس شالید لپاره رنګونه - یو شان شالید
-BOX1_BG = "\033[48;2;139;69;19m"        # SaddleBrown (یو شان)
-BOX2_BG = "\033[48;2;0;100;80m"         # Teal (یو شان)
+# د لومړي بکس لپاره مختلف شالید رنګونه (هر کرښه ځانګړی)
+BOX1_COLORS = [
+    "\033[48;2;139;69;19m",   # SaddleBrown
+    "\033[48;2;160;82;45m",   # Sienna
+    "\033[48;2;205;133;63m",  # Peru
+    "\033[48;2;210;105;30m",  # Chocolate
+    "\033[48;2;188;143;143m", # RosyBrown
+    "\033[48;2;205;92;92m",   # IndianRed
+]
+
+# د دویم بکس لپاره مختلف شالید رنګونه (هر کرښه ځانګړی)
+BOX2_COLORS = [
+    "\033[48;2;0;100;80m",    # Teal
+    "\033[48;2;0;128;128m",   # DarkCyan
+    "\033[48;2;32;178;170m",  # LightSeaGreen
+    "\033[48;2;47;79;79m",    # DarkSlateGray
+    "\033[48;2;72;209;204m",  # MediumTurquoise
+    "\033[48;2;0;139;139m",   # DarkCyan
+]
 
 # د متن هایلایټ رنګونه
-BOX2_TEXT_HIGHLIGHT = "\033[38;2;255;215;0m"  # د متن لپاره طلایی
+BOX2_TEXT_HIGHLIGHT = "\033[38;2;255;215;0m"
 
 # د کرښو لپاره ځانګړي رنگین کوډونه
 LINE_BOLD = "\033[1m"
@@ -83,15 +99,15 @@ def banner():
     os.system(f"echo \"{logo}\" | lolcat -p 1.6")
 
 def print_box1():
-    """لومړی بکس - یو شان شالید او منظم کرښې"""
+    """لومړی بکس - هر کرښه ځانګړی شالید"""
     width = get_terminal_width()
     line_width = min(width - 4, 70)
     
-    # پورتنۍ کرښه - منظمه
+    # پورتنۍ کرښه
     top_line = f"{LINE_BOLD}{DARK_GOLD}{'═' * line_width}{RESET}"
     print(top_line)
     
-    # د معلوماتو کرښې - ټول یو شان شالید
+    # د معلوماتو کرښې - هر یوه مختلف شالید
     info_lines = [
         f"  {GOLD_LINE}Developer   >>{WHITE_TEXT} Faroooq Inc",
         f"  {GOLD_LINE}Tool Type   >>{WHITE_TEXT} FILExRANDOM",
@@ -101,48 +117,54 @@ def print_box1():
         f"  {GOLD_LINE}Platform    >>{WHITE_TEXT} Termux"
     ]
     
-    for info in info_lines:
-        # د کرښې اوږدوالی محاسبه
+    for i, info in enumerate(info_lines):
+        # د هرې کرښې لپاره مختلف رنګ
+        color_index = i % len(BOX1_COLORS)
+        bg_color = BOX1_COLORS[color_index]
+        
         clean_info = info.replace(GOLD_LINE, '').replace(WHITE_TEXT, '').replace(RESET, '')
         info_len = len(clean_info)
         padding_needed = line_width - info_len - 4
         if padding_needed < 0:
             padding_needed = 0
-        print(f"{BOX1_BG}{WHITE_TEXT}{BOLD}║{info}{' ' * padding_needed} ║{RESET}")
+        print(f"{bg_color}{WHITE_TEXT}{BOLD}║{info}{' ' * padding_needed} ║{RESET}")
     
-    # ښکته کرښه - منظمه
+    # ښکته کرښه
     bottom_line = f"{LINE_BOLD}{DARK_GOLD}{'═' * line_width}{RESET}"
     print(bottom_line)
 
 def print_box2():
-    """دویم بکس - یو شان شالید او منظم کرښې"""
+    """دویم بکس - هر کرښه ځانګړی شالید"""
     width = get_terminal_width()
     line_width = min(width - 4, 70)
     
-    # پورتنۍ کرښه - منظمه
+    # پورتنۍ کرښه
     top_line = f"{LINE_BOLD}{LIGHT_GOLD}{'═' * line_width}{RESET}"
     print(top_line)
     
-    # د معلوماتو کرښې - ټول یو شان شالید
+    # د معلوماتو کرښې - هر یوه مختلف شالید
     info_lines = [
         f"  {WHITE_TEXT}Operator        >> {BOX2_TEXT_HIGHLIGHT}0171{WHITE_TEXT}",
         f"  {WHITE_TEXT}Total Account   >> {BOX2_TEXT_HIGHLIGHT}5000{WHITE_TEXT}",
-        f"  {WHITE_TEXT}⚡ Use Airplane (Flight) Mode For Speed Up",
+        f"  {WHITE_TEXT}⚡ Use Airplane Mode For Speed Up",
         f"  {WHITE_TEXT}[!] {BOX2_TEXT_HIGHLIGHT}Turn on Flight Mode{WHITE_TEXT}",
         f"  {WHITE_TEXT}Speed           >> {BOX2_TEXT_HIGHLIGHT}MAXIMUM{WHITE_TEXT}",
         f"  {WHITE_TEXT}Connection      >> {BOX2_TEXT_HIGHLIGHT}STABLE{WHITE_TEXT}"
     ]
     
-    for info in info_lines:
-        # د کرښې اوږدوالی محاسبه
+    for i, info in enumerate(info_lines):
+        # د هرې کرښې لپاره مختلف رنګ
+        color_index = i % len(BOX2_COLORS)
+        bg_color = BOX2_COLORS[color_index]
+        
         clean_info = info.replace(BOX2_TEXT_HIGHLIGHT, '').replace(WHITE_TEXT, '').replace(RESET, '')
         info_len = len(clean_info)
         padding_needed = line_width - info_len - 4
         if padding_needed < 0:
             padding_needed = 0
-        print(f"{BOX2_BG}{BOX2_TEXT_HIGHLIGHT}{BOLD}║{info}{' ' * padding_needed} ║{RESET}")
+        print(f"{bg_color}{BOX2_TEXT_HIGHLIGHT}{BOLD}║{info}{' ' * padding_needed} ║{RESET}")
     
-    # ښکته کرښه - منظمه
+    # ښکته کرښه
     bottom_line = f"{LINE_BOLD}{LIGHT_GOLD}{'═' * line_width}{RESET}"
     print(bottom_line)
 
@@ -183,7 +205,7 @@ def main():
     print()
     print()
     
-    # بکسونه - منظم او مساوي
+    # بکسونه - هر کرښه ځانګړی شالید
     print_box1()
     print()
     print_box2()
@@ -192,7 +214,7 @@ def main():
     width = get_terminal_width()
     print(f"{GOLD_LINE}{BOLD}{'=' * min(width - 4, 60)}{RESET}")
     show_prompt()
-    print()  # اضافي نوی کرښه
+    print()
 
 if __name__ == "__main__":
     main() 
