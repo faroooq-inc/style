@@ -16,27 +16,36 @@ LIGHT_GOLD = "\033[38;2;255;223;0m"     # روښانه طلایی
 RED_GOLD = "\033[38;2;255;69;0m"        # سور-طلایی
 
 # د لومړي بکس لپاره مختلف شالید رنګونه (هر کرښه ځانګړی)
-BOX1_COLORS = [
+BOX1_BG_COLORS = [
     "\033[48;2;139;69;19m",   # SaddleBrown
     "\033[48;2;160;82;45m",   # Sienna
     "\033[48;2;205;133;63m",  # Peru
     "\033[48;2;210;105;30m",  # Chocolate
-    "\033[48;2;188;143;143m", # RosyBrown
-    "\033[48;2;205;92;92m",   # IndianRed
 ]
 
 # د دویم بکس لپاره مختلف شالید رنګونه (هر کرښه ځانګړی)
-BOX2_COLORS = [
+BOX2_BG_COLORS = [
     "\033[48;2;0;100;80m",    # Teal
     "\033[48;2;0;128;128m",   # DarkCyan
     "\033[48;2;32;178;170m",  # LightSeaGreen
     "\033[48;2;47;79;79m",    # DarkSlateGray
-    "\033[48;2;72;209;204m",  # MediumTurquoise
-    "\033[48;2;0;139;139m",   # DarkCyan
 ]
 
-# د متن هایلایټ رنګونه
-BOX2_TEXT_HIGHLIGHT = "\033[38;2;255;215;0m"
+# د هرې کرښې لپاره مختلف متن رنګونه (لومړی بکس)
+BOX1_TEXT_COLORS = [
+    "\033[38;2;255;215;0m",   # طلایی
+    "\033[38;2;255;223;0m",   # روښانه طلایی
+    "\033[38;2;255;255;0m",   # ژیړ
+    "\033[38;2;255;140;0m",   # نارنجي
+]
+
+# د هرې کرښې لپاره مختلف متن رنګونه (دویم بکس)
+BOX2_TEXT_COLORS = [
+    "\033[38;2;0;255;255m",    # Cyan
+    "\033[38;2;0;255;127m",    # SpringGreen
+    "\033[38;2;255;215;0m",    # طلایی
+    "\033[38;2;173;216;230m",  # LightBlue
+]
 
 # د کرښو لپاره ځانګړي رنگین کوډونه
 LINE_BOLD = "\033[1m"
@@ -99,79 +108,60 @@ def banner():
     os.system(f"echo \"{logo}\" | lolcat -p 1.6")
 
 def print_box1():
-    """لومړی بکس - هر کرښه ځانګړی شالید"""
+    """لومړی بکس - هنري لاینونه، هر کرښه ځانګړی شالید او متن رنګ"""
     width = get_terminal_width()
-    line_width = min(width - 4, 70)
     
-    # پورتنۍ کرښه
-    top_line = f"{LINE_BOLD}{DARK_GOLD}{'═' * line_width}{RESET}"
-    print(top_line)
+    # پورتنۍ کرښه - لکه ستاسو په کوډ کې
+    print(f"{LINE_BOLD}{DARK_GOLD}═══════════════════════ {GOLD_LINE}» ───── «◊•» ✠ • ◊ «─────» «═══════════════════{RESET}")
     
-    # د معلوماتو کرښې - هر یوه مختلف شالید
+    # د معلوماتو کرښې - هر یوه مختلف شالید او متن رنګ
     info_lines = [
-        f"  {GOLD_LINE}Developer   >>{WHITE_TEXT} Faroooq Inc",
-        f"  {GOLD_LINE}Tool Type   >>{WHITE_TEXT} FILExRANDOM",
-        f"  {GOLD_LINE}Github      >>{WHITE_TEXT} github.com/porn-404",
-        f"  {GOLD_LINE}Version     >>{WHITE_TEXT} V2.7",
-        f"  {GOLD_LINE}Status      >>{WHITE_TEXT} Active",
-        f"  {GOLD_LINE}Platform    >>{WHITE_TEXT} Termux"
+        f"Developer   >> Faroooq Inc",
+        f"Tool Type   >> FILExRANDOM",
+        f"Github      >> github.com/porn-404",
+        f"Version     >> V2.7"
     ]
     
     for i, info in enumerate(info_lines):
-        # د هرې کرښې لپاره مختلف رنګ
-        color_index = i % len(BOX1_COLORS)
-        bg_color = BOX1_COLORS[color_index]
+        bg_color = BOX1_BG_COLORS[i % len(BOX1_BG_COLORS)]
+        text_color = BOX1_TEXT_COLORS[i % len(BOX1_TEXT_COLORS)]
         
-        clean_info = info.replace(GOLD_LINE, '').replace(WHITE_TEXT, '').replace(RESET, '')
-        info_len = len(clean_info)
-        padding_needed = line_width - info_len - 4
-        if padding_needed < 0:
-            padding_needed = 0
-        print(f"{bg_color}{WHITE_TEXT}{BOLD}║{info}{' ' * padding_needed} ║{RESET}")
+        # د کرښې اوږدوالی محاسبه
+        line_content = f"║  {text_color}{BOLD}{info}{RESET}{bg_color}{' ' * (45 - len(info))} ║"
+        print(f"{bg_color}{line_content}{RESET}")
     
-    # ښکته کرښه
-    bottom_line = f"{LINE_BOLD}{DARK_GOLD}{'═' * line_width}{RESET}"
-    print(bottom_line)
+    # ښکته کرښه - لکه ستاسو په کوډ کې
+    print(f"{LINE_BOLD}{DARK_GOLD}═══════════════ ──•◆•── ────────────────•✦•───────────────────╝{RESET}")
 
 def print_box2():
-    """دویم بکس - هر کرښه ځانګړی شالید"""
+    """دویم بکس - هنري لاینونه، هر کرښه ځانګړی شالید او متن رنګ"""
     width = get_terminal_width()
-    line_width = min(width - 4, 70)
     
-    # پورتنۍ کرښه
-    top_line = f"{LINE_BOLD}{LIGHT_GOLD}{'═' * line_width}{RESET}"
-    print(top_line)
+    # پورتنۍ کرښه - لکه ستاسو په کوډ کې
+    print(f"{LINE_BOLD}{LIGHT_GOLD}═══════════════════════ {RED_GOLD}» ───── «◊•» ✠ • ◊ «─────» «═══════════════════{RESET}")
     
-    # د معلوماتو کرښې - هر یوه مختلف شالید
+    # د معلوماتو کرښې - هر یوه مختلف شالید او متن رنګ
     info_lines = [
-        f"  {WHITE_TEXT}Operator        >> {BOX2_TEXT_HIGHLIGHT}0171{WHITE_TEXT}",
-        f"  {WHITE_TEXT}Total Account   >> {BOX2_TEXT_HIGHLIGHT}5000{WHITE_TEXT}",
-        f"  {WHITE_TEXT}⚡ Use Airplane Mode For Speed Up",
-        f"  {WHITE_TEXT}[!] {BOX2_TEXT_HIGHLIGHT}Turn on Flight Mode{WHITE_TEXT}",
-        f"  {WHITE_TEXT}Speed           >> {BOX2_TEXT_HIGHLIGHT}MAXIMUM{WHITE_TEXT}",
-        f"  {WHITE_TEXT}Connection      >> {BOX2_TEXT_HIGHLIGHT}STABLE{WHITE_TEXT}"
+        f"Operator        >> 0171",
+        f"Total Account   >> 5000",
+        f"⚡ Use Airplane (Flight) Mode For Speed Up",
+        f"[!] Turn on Flight Mode for best results"
     ]
     
     for i, info in enumerate(info_lines):
-        # د هرې کرښې لپاره مختلف رنګ
-        color_index = i % len(BOX2_COLORS)
-        bg_color = BOX2_COLORS[color_index]
+        bg_color = BOX2_BG_COLORS[i % len(BOX2_BG_COLORS)]
+        text_color = BOX2_TEXT_COLORS[i % len(BOX2_TEXT_COLORS)]
         
-        clean_info = info.replace(BOX2_TEXT_HIGHLIGHT, '').replace(WHITE_TEXT, '').replace(RESET, '')
-        info_len = len(clean_info)
-        padding_needed = line_width - info_len - 4
-        if padding_needed < 0:
-            padding_needed = 0
-        print(f"{bg_color}{BOX2_TEXT_HIGHLIGHT}{BOLD}║{info}{' ' * padding_needed} ║{RESET}")
+        # د کرښې اوږدوالی محاسبه
+        line_content = f"║  {text_color}{BOLD}{info}{RESET}{bg_color}{' ' * (45 - len(info))} ║"
+        print(f"{bg_color}{line_content}{RESET}")
     
-    # ښکته کرښه
-    bottom_line = f"{LINE_BOLD}{LIGHT_GOLD}{'═' * line_width}{RESET}"
-    print(bottom_line)
+    # ښکته کرښه - لکه ستاسو په کوډ کې
+    print(f"{LINE_BOLD}{LIGHT_GOLD}═══════════════ ──•◆•── ────────────────•✦•───────────────────╝{RESET}")
 
 def show_prompt():
     """ترمینل پرامپټ - درې مختلف رنګونه لرونکې ❯❯❯ نښې"""
     print(f"\n\033[93m{BOLD}┌─[h4ck3r@termux]-[~]\033[0m")
-    # درې جلا جلا ❯ نښې - هره یوه بیل رنګ
     print(f"{BOLD}{RED_ARROW}└──╼{RESET} {BOLD}{RED_ARROW}❯{RESET}{BOLD}{GREEN_ARROW}❯{RESET}{BOLD}{BLUE_ARROW}❯{RESET} \033[0m", end="")
 
 def welcome():
@@ -196,25 +186,22 @@ def main():
     time.sleep(0.5)
     clear()
     
-    # لوګو د lolcat سره
     banner()
     
-    # ځانګړی متن - سنټر، دوه چنده لوی
     print()
     print_centered_big("WELCOME TO FAROOOQ TOOLS")
     print()
     print()
     
-    # بکسونه - هر کرښه ځانګړی شالید
     print_box1()
     print()
     print_box2()
     print()
     
     width = get_terminal_width()
-    print(f"{GOLD_LINE}{BOLD}{'=' * min(width - 4, 60)}{RESET}")
+    print(f"{GOLD_LINE}{BOLD}{'=' * 50}{RESET}")
     show_prompt()
     print()
 
 if __name__ == "__main__":
-    main() 
+    main()
