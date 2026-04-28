@@ -40,6 +40,100 @@ logo = """
  [/] Tool Type > File & Random 
 ------------------------------------------------"""
 
+#━━━━━━━━━━━━〔━>> WELCOME & BOX & PROMPT <<━〕━━━━━━━━━━━━#
+
+# ANSI رنګونه
+WHITE_TEXT = "\033[97m"
+BOLD = "\033[1m"
+RESET = "\033[0m"
+UNDERLINE = "\033[4m"
+
+# د بکس رنګونه
+GOLD_LINE = "\033[38;2;255;215;0m"
+DARK_GOLD = "\033[38;2;184;134;11m"
+
+# د بکس شالید
+BOX1_BG = "\033[48;2;139;69;19m"
+SPECIAL_BG1_2 = "\033[48;2;205;133;63m"
+SPECIAL_BG1_4 = "\033[48;2;210;105;30m"
+SPECIAL_BG1_6 = "\033[48;2;155;0;81m"
+
+LINE_BOLD = "\033[1m"
+CYAN_ARROW = "\033[96m"
+
+def get_terminal_width():
+    try:
+        return os.get_terminal_size().columns
+    except:
+        return 80
+
+def print_centered_big(text):
+    terminal_width = get_terminal_width()
+    big_text = ""
+    for char in text:
+        if char.isupper() or char.islower() or char.isdigit():
+            big_text += char + " "
+        else:
+            big_text += char
+    if len(big_text) > terminal_width - 4:
+        big_text = text
+    text_length = len(big_text)
+    padding = (terminal_width - text_length) // 2
+    if padding < 0:
+        padding = 0
+    spaces = " " * padding
+    mid = len(big_text) // 2
+    first_half = big_text[:mid]
+    second_half = big_text[mid:]
+    print(f"{spaces}", end="")
+    print(f"\033[41m\033[97m{BOLD}{UNDERLINE}{first_half}{RESET}", end="")
+    print(f"\033[42m\033[97m{BOLD}{UNDERLINE}{second_half}{RESET}")
+
+def print_box1():
+    width = get_terminal_width()
+    line_width = min(width - 4, 70)
+    print(f"{LINE_BOLD}{DARK_GOLD}═══════════════════════ {GOLD_LINE}» ───── «◊•» ✠ • ◊ «─────» «═══════════════════{RESET}")
+    info_lines = [
+        f"  {GOLD_LINE}Developer   >>{WHITE_TEXT} Faroooq Inc",
+        f"  {GOLD_LINE}Tool Type   >>{WHITE_TEXT} FILExRANDOM",
+        f"  {GOLD_LINE}Github      >>{WHITE_TEXT} github.com/king-afghan",
+        f"  {GOLD_LINE}Version     >>{WHITE_TEXT} V2.7",
+        f"  {GOLD_LINE}Status      >>{WHITE_TEXT} Active",
+        f"  {GOLD_LINE}Platform    >>{WHITE_TEXT} Termux"
+    ]
+    for i, info in enumerate(info_lines):
+        if i == 1:
+            bg_color = SPECIAL_BG1_2
+        elif i == 3:
+            bg_color = SPECIAL_BG1_4
+        elif i == 5:
+            bg_color = SPECIAL_BG1_6
+        else:
+            bg_color = BOX1_BG
+        clean_info = info.replace(GOLD_LINE, '').replace(WHITE_TEXT, '').replace(RESET, '')
+        info_len = len(clean_info)
+        padding_needed = line_width - info_len - 4
+        if padding_needed < 0:
+            padding_needed = 0
+        print(f"{bg_color}{WHITE_TEXT}{BOLD}║{info}{' ' * padding_needed} ║{RESET}")
+    print(f"{LINE_BOLD}{DARK_GOLD}═══════════════ ──•◆•── ────────────────•✦•───────────────────╝{RESET}")
+
+def show_prompt():
+    print(f"\n\033[93m{BOLD}┌─[h4ck3r@termux]-[~]\033[0m")
+    print(f"{BOLD}{CYAN_ARROW}└──╼{RESET} {BOLD}{CYAN_ARROW}❯{RESET}{BOLD}{CYAN_ARROW}❯{RESET}{BOLD}{CYAN_ARROW}❯{RESET} \033[0m", end="")
+
+def welcome():
+    width = get_terminal_width()
+    welcome_text = "⚡ WELCOME TO FAROOQ TOOL ⚡"
+    padding = (width - len(welcome_text)) // 2
+    if padding < 0:
+        padding = 0
+    spaces = " " * padding
+    print(f"\n{spaces}\033[1;33m{BOLD}{'=' * len(welcome_text)}{RESET}")
+    print(f"{spaces}\033[1;32m{BOLD}{welcome_text}{RESET}")
+    print(f"{spaces}\033[1;33m{BOLD}{'=' * len(welcome_text)}{RESET}\n")
+    time.sleep(1)
+
 #━━━━━━━━━━━━〔━>> COLOUR CODE <<━〕━━━━━━━━━━━━#
 devices = {
     "Samsung": {
@@ -299,10 +393,17 @@ class RANDOM:
         self.session = requests.Session()
         self.main()
 
-    def clear(self):
-        os.system("clear")
-        os.system(f'echo "{logo}" | lolcat -p 1.6')
-
+  def clear(self):
+    os.system("clear")
+    os.system(f'echo "{logo}" | lolcat -p 1.6')
+    print()
+    print_centered_big("WELCOME TO FAROOOQ TOOLS")
+    print()
+    print_box1()
+    print()
+    show_prompt()
+    print() 
+    
     def linex(self):
         print(f"{W}------------------------------------------------")
 
