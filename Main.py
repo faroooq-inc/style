@@ -393,17 +393,17 @@ class RANDOM:
         self.session = requests.Session()
         self.main()
 
-  def clear(self):
-    os.system("clear")
-    os.system(f'echo "{logo}" | lolcat -p 1.6')
-    print()
-    print_centered_big("WELCOME TO FAROOOQ TOOLS")
-    print()
-    print_box1()
-    print()
-    show_prompt()
-    print() 
-    
+    def clear(self):
+        os.system("clear")
+        os.system(f'echo "{logo}" | lolcat -p 1.6')
+        print()
+        print_centered_big("WELCOME TO FAROOOQ TOOLS")
+        print()
+        print_box1()
+        print()
+        show_prompt()
+        print()
+
     def linex(self):
         print(f"{W}------------------------------------------------")
 
