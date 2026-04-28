@@ -685,13 +685,13 @@ class RANDOM:
     def rnd(self):
     self.clear()
     
-    # د هیواد انتخاب
-    print(f"{GOLD_LINE}{BOLD}{'◇' * 50}{RESET}")
-    print(f"{GOLD_LINE}{BOLD}◆{RESET} 1 → Random Afghanistan{ ' ' * 25}{GOLD_LINE}{BOLD}◆{RESET}")
-    print(f"{GOLD_LINE}{BOLD}◆{RESET} 2 → Random Malaysia{ ' ' * 28}{GOLD_LINE}{BOLD}◆{RESET}")
-    print(f"{GOLD_LINE}{BOLD}◆{RESET} 3 → Random India{ ' ' * 31}{GOLD_LINE}{BOLD}◆{RESET}")
-    print(f"{GOLD_LINE}{BOLD}◆{RESET} 4 → Random Nepal{ ' ' * 31}{GOLD_LINE}{BOLD}◆{RESET}")
-    print(f"{GOLD_LINE}{BOLD}{'◇' * 50}{RESET}")
+    # د هیواد انتخاب - منظم بکس
+    print(f"{GOLD_LINE}{BOLD}{'◇' * 54}{RESET}")
+    print(f"{GOLD_LINE}{BOLD}◆{RESET} 1 → Random Afghanistan{' ' * 31}{GOLD_LINE}{BOLD}◆{RESET}")
+    print(f"{GOLD_LINE}{BOLD}◆{RESET} 2 → Random Malaysia{' ' * 34}{GOLD_LINE}{BOLD}◆{RESET}")
+    print(f"{GOLD_LINE}{BOLD}◆{RESET} 3 → Random India{' ' * 37}{GOLD_LINE}{BOLD}◆{RESET}")
+    print(f"{GOLD_LINE}{BOLD}◆{RESET} 4 → Random Nepal{' ' * 37}{GOLD_LINE}{BOLD}◆{RESET}")
+    print(f"{GOLD_LINE}{BOLD}{'◇' * 54}{RESET}")
     
     country = input(f" {X} Select > ")
     self.clear()
@@ -715,16 +715,16 @@ class RANDOM:
         self.rnd()
         return
     
-    # د کوډ لپاره بکس
-    print(f"{GOLD_LINE}{BOLD}{'◇' * 50}{RESET}")
-    print(f"{GOLD_LINE}{BOLD}◆{RESET} {ex_info}{' ' * (37 - len(ex_info))}{GOLD_LINE}{BOLD}◆{RESET}")
-    print(f"{GOLD_LINE}{BOLD}{'◇' * 50}{RESET}")
+    # د کوډ لپاره بکس - منظم
+    print(f"{GOLD_LINE}{BOLD}{'◇' * 54}{RESET}")
+    print(f"{GOLD_LINE}{BOLD}◆{RESET} {ex_info}{' ' * (45 - len(ex_info))}{GOLD_LINE}{BOLD}◆{RESET}")
+    print(f"{GOLD_LINE}{BOLD}{'◇' * 54}{RESET}")
     code = input(f" {X} Put Code > ")
     
-    # د حد لپاره بکس
-    print(f"{GOLD_LINE}{BOLD}{'◇' * 50}{RESET}")
-    print(f"{GOLD_LINE}{BOLD}◆{RESET} Ex > 1000, 9999{ ' ' * 31}{GOLD_LINE}{BOLD}◆{RESET}")
-    print(f"{GOLD_LINE}{BOLD}{'◇' * 50}{RESET}")
+    # د حد لپاره بکس - منظم
+    print(f"{GOLD_LINE}{BOLD}{'◇' * 54}{RESET}")
+    print(f"{GOLD_LINE}{BOLD}◆{RESET} Ex > 1000, 9999{' ' * 36}{GOLD_LINE}{BOLD}◆{RESET}")
+    print(f"{GOLD_LINE}{BOLD}{'◇' * 54}{RESET}")
     
     try:
         limit = int(input(f" {X} Put Limit > "))
@@ -735,11 +735,11 @@ class RANDOM:
         nmp = ''.join(random.choice(string.digits) for _ in range(7))
         self.user.append(nmp)
     
-    # د پاسورډ ډول لپاره بکس
-    print(f"{GOLD_LINE}{BOLD}{'◇' * 50}{RESET}")
-    print(f"{GOLD_LINE}{BOLD}◆{RESET} 1 → Auto Password{ ' ' * 30}{GOLD_LINE}{BOLD}◆{RESET}")
-    print(f"{GOLD_LINE}{BOLD}◆{RESET} 2 → Manual Password{ ' ' * 29}{GOLD_LINE}{BOLD}◆{RESET}")
-    print(f"{GOLD_LINE}{BOLD}{'◇' * 50}{RESET}")
+    # د پاسورډ ډول لپاره بکس - منظم
+    print(f"{GOLD_LINE}{BOLD}{'◇' * 54}{RESET}")
+    print(f"{GOLD_LINE}{BOLD}◆{RESET} 1 → Auto Password{' ' * 36}{GOLD_LINE}{BOLD}◆{RESET}")
+    print(f"{GOLD_LINE}{BOLD}◆{RESET} 2 → Manual Password{' ' * 35}{GOLD_LINE}{BOLD}◆{RESET}")
+    print(f"{GOLD_LINE}{BOLD}{'◇' * 54}{RESET}")
     pstype = input(f" {X} Select > ")
     
     if pstype == "1":
@@ -765,22 +765,22 @@ class RANDOM:
             pwx = input(f" {X} Password [{x+1}] > ")
             self.plist.append(pwx)
     
-    # د میتود لپاره بکس
+    # د میتود لپاره بکس - منظم
     self.clear()
-    print(f"{GOLD_LINE}{BOLD}{'◇' * 50}{RESET}")
-    print(f"{GOLD_LINE}{BOLD}◆{RESET} 1 → Method [c_user]{ ' ' * 27}{GOLD_LINE}{BOLD}◆{RESET}")
-    print(f"{GOLD_LINE}{BOLD}◆{RESET} 2 → Method [c_user]{ ' ' * 27}{GOLD_LINE}{BOLD}◆{RESET}")
-    print(f"{GOLD_LINE}{BOLD}◆{RESET} 3 → Method [c_user]{ ' ' * 27}{GOLD_LINE}{BOLD}◆{RESET}")
-    print(f"{GOLD_LINE}{BOLD}◆{RESET} 4 → Method [datr]{ ' ' * 29}{GOLD_LINE}{BOLD}◆{RESET}")
-    print(f"{GOLD_LINE}{BOLD}◆{RESET} 5 → Method [c_user]{ ' ' * 27}{GOLD_LINE}{BOLD}◆{RESET}")
-    print(f"{GOLD_LINE}{BOLD}{'◇' * 50}{RESET}")
+    print(f"{GOLD_LINE}{BOLD}{'◇' * 54}{RESET}")
+    print(f"{GOLD_LINE}{BOLD}◆{RESET} 1 → Method [c_user]{' ' * 33}{GOLD_LINE}{BOLD}◆{RESET}")
+    print(f"{GOLD_LINE}{BOLD}◆{RESET} 2 → Method [c_user]{' ' * 33}{GOLD_LINE}{BOLD}◆{RESET}")
+    print(f"{GOLD_LINE}{BOLD}◆{RESET} 3 → Method [c_user]{' ' * 33}{GOLD_LINE}{BOLD}◆{RESET}")
+    print(f"{GOLD_LINE}{BOLD}◆{RESET} 4 → Method [datr]{' ' * 35}{GOLD_LINE}{BOLD}◆{RESET}")
+    print(f"{GOLD_LINE}{BOLD}◆{RESET} 5 → Method [c_user]{' ' * 33}{GOLD_LINE}{BOLD}◆{RESET}")
+    print(f"{GOLD_LINE}{BOLD}{'◇' * 54}{RESET}")
     mtd = input(f" {X} Select > ")
     
-    # د سرعت لپاره بکس
-    print(f"{GOLD_LINE}{BOLD}{'◇' * 50}{RESET}")
-    print(f"{GOLD_LINE}{BOLD}◆{RESET} 1 → Speed [Normal]{ ' ' * 29}{GOLD_LINE}{BOLD}◆{RESET}")
-    print(f"{GOLD_LINE}{BOLD}◆{RESET} 2 → Speed [High]{ ' ' * 31}{GOLD_LINE}{BOLD}◆{RESET}")
-    print(f"{GOLD_LINE}{BOLD}{'◇' * 50}{RESET}")
+    # د سرعت لپاره بکس - منظم
+    print(f"{GOLD_LINE}{BOLD}{'◇' * 54}{RESET}")
+    print(f"{GOLD_LINE}{BOLD}◆{RESET} 1 → Speed [Normal]{' ' * 35}{GOLD_LINE}{BOLD}◆{RESET}")
+    print(f"{GOLD_LINE}{BOLD}◆{RESET} 2 → Speed [High]{' ' * 37}{GOLD_LINE}{BOLD}◆{RESET}")
+    print(f"{GOLD_LINE}{BOLD}{'◇' * 54}{RESET}")
     spd = input(f" {X} Select > ")
     
     if spd == "1":
@@ -788,10 +788,10 @@ class RANDOM:
     else:
         speed = 45
     
-    # د کوکی لپاره بکس
-    print(f"{GOLD_LINE}{BOLD}{'◇' * 50}{RESET}")
-    print(f"{GOLD_LINE}{BOLD}◆{RESET} Show Cookie? (Y/N){ ' ' * 31}{GOLD_LINE}{BOLD}◆{RESET}")
-    print(f"{GOLD_LINE}{BOLD}{'◇' * 50}{RESET}")
+    # د کوکی لپاره بکس - منظم
+    print(f"{GOLD_LINE}{BOLD}{'◇' * 54}{RESET}")
+    print(f"{GOLD_LINE}{BOLD}◆{RESET} Show Cookie? (Y/N){' ' * 37}{GOLD_LINE}{BOLD}◆{RESET}")
+    print(f"{GOLD_LINE}{BOLD}{'◇' * 54}{RESET}")
     cki = input(f" {X} Select (Y|N) > ")
     
     if cki in ["n", "N", "no", "NO"]:
@@ -799,14 +799,14 @@ class RANDOM:
     else:
         self.cok.append("yes")
     
-    # د کرک کولو پیل
+    # د کرک کولو پیل - منظم بکس
     with ThreadPoolExecutor(max_workers=speed) as executor:
         self.clear()
-        print(f"{GOLD_LINE}{BOLD}{'◇' * 50}{RESET}")
-        print(f"{GOLD_LINE}{BOLD}◆{RESET} Operator > {code}{' ' * (36 - len(str(code)))}{GOLD_LINE}{BOLD}◆{RESET}")
-        print(f"{GOLD_LINE}{BOLD}◆{RESET} Total Account > {G}{limit}{RESET}{' ' * (33 - len(str(limit)))}{GOLD_LINE}{BOLD}◆{RESET}")
-        print(f"{GOLD_LINE}{BOLD}◆{RESET} Use Airplane (Flight) Mode For Speed Up{ ' ' * 5}{GOLD_LINE}{BOLD}◆{RESET}")
-        print(f"{GOLD_LINE}{BOLD}{'◇' * 50}{RESET}")
+        print(f"{GOLD_LINE}{BOLD}{'◇' * 54}{RESET}")
+        print(f"{GOLD_LINE}{BOLD}◆{RESET} Operator > {code}{' ' * (41 - len(str(code)))}{GOLD_LINE}{BOLD}◆{RESET}")
+        print(f"{GOLD_LINE}{BOLD}◆{RESET} Total Account > {G}{limit}{RESET}{' ' * (38 - len(str(limit)))}{GOLD_LINE}{BOLD}◆{RESET}")
+        print(f"{GOLD_LINE}{BOLD}◆{RESET} Use Airplane (Flight) Mode For Speed Up{' ' * 8}{GOLD_LINE}{BOLD}◆{RESET}")
+        print(f"{GOLD_LINE}{BOLD}{'◇' * 54}{RESET}")
         self.linex()
         
         for love in self.user:
