@@ -34,20 +34,21 @@ def fake_loading():
     
     # د شالید رنګونه
     BG_RED = "\033[48;2;255;0;0m"        # د شروع متن لپاره
-    BG_GREEN = "\033[48;2;0;255;0m"      # د پای متن لپاره
+    BG_BROWN = "\033[48;2;139;69;19m"    # خرمایی رنګ (SaddleBrown) د پای لپاره
     RESET_BG = "\033[0m"
     BOLD = "\033[1m"
     GOLD = "\033[38;2;255;215;0m"        # طلایی رنګ
-    PINK = "\033[38;2;255;0;98m"         # #ff0062 - د حساب روان لپاره
+    PINK = "\033[38;2;255;0;98m"         # #ff0062 - د پیکیجونو لپاره
+    LIGHT_GREEN = "\033[38;2;183;240;15m" # #b7f00f - د کرسر عدد لپاره
     WHITE = "\033[97m"
     
-    # سرلیک - سور شالید (فقط د شروع متن)
+    # سرلیک - سور شالید
     print(f"{BG_RED}{BOLD}{WHITE}{' ' * (term_width)}{RESET_BG}")
     print(f"{BG_RED}{BOLD}{WHITE}{' ' * ((term_width - 48) // 2)}FAROOQ TOOLS PACKAGE INSTALLER v2.7{' ' * ((term_width - 48) // 2)}{RESET_BG}")
     print(f"{BG_RED}{BOLD}{WHITE}{' ' * (term_width)}{RESET_BG}")
     print()
     
-    # پیکیجونه - طلایی رنګ (باقي متنونه)
+    # پیکیجونه - د پاسورډ رنګ #ff0062
     packages = [
         {"name": "faroooq-core", "size_mb": 28.4, "files": 124},
         {"name": "faroooq-encryption", "size_mb": 18.7, "files": 87},
@@ -62,10 +63,11 @@ def fake_loading():
         pkg_size = pkg["size_mb"]
         pkg_files = pkg["files"]
         
-        print(f"{GOLD}{BOLD}[{i}/{len(packages)}] Processing package: {pkg['name']}{RESET_BG}")
-        print(f"{GOLD}{BOLD}    ├── Size: {pkg_size} MB{RESET_BG}")
-        print(f"{GOLD}{BOLD}    ├── Files: {pkg_files}{RESET_BG}")
-        print(f"{GOLD}{BOLD}    └── Status: Installing{RESET_BG}")
+        # د پیکیج معلومات د PINK رنګ سره (#ff0062)
+        print(f"{PINK}{BOLD}[{i}/{len(packages)}] Processing package: {pkg['name']}{RESET_BG}")
+        print(f"{PINK}{BOLD}    ├── Size: {pkg_size} MB{RESET_BG}")
+        print(f"{PINK}{BOLD}    ├── Files: {pkg_files}{RESET_BG}")
+        print(f"{PINK}{BOLD}    └── Status: Installing{RESET_BG}")
         print()
         
         bar_length = 50
@@ -85,7 +87,8 @@ def fake_loading():
             speed = random.uniform(2.5, 12.8)
             remaining = round((pkg_files - file_num) / speed, 1)
             
-            sys.stdout.write(f"\r   {GOLD}Progress:{RESET_BG} {color}[{bar}]{RESET_BG} {BOLD}{GOLD}{percent}%{RESET_BG} {GOLD}[{transferred}/{pkg_size} MB] [{file_num}/{pkg_files} files] [ETA: {remaining}s]{' ' * 10}{RESET_BG}")
+            # د Progress کلمه بدله شوه "Installing" ته
+            sys.stdout.write(f"\r   {PINK}Installing:{RESET_BG} {color}[{bar}]{RESET_BG} {BOLD}{LIGHT_GREEN}{percent}%{RESET_BG} {PINK}[{transferred}/{pkg_size} MB] [{file_num}/{pkg_files} files] [ETA: {remaining}s]{' ' * 10}{RESET_BG}")
             sys.stdout.flush()
             
             delay = random.uniform(0.01, 0.08)
@@ -93,7 +96,8 @@ def fake_loading():
                 delay = random.uniform(0.02, 0.05)
             time.sleep(delay)
         
-        print(f" {GOLD}[✓ COMPLETE]{RESET_BG}")
+        # د پیکیج بشپړیدو پیغام
+        print(f" {PINK}[✓ COMPLETE]{RESET_BG}")
         print()
         time.sleep(0.4)
     
@@ -119,11 +123,11 @@ def fake_loading():
     
     print()
     
-    # پای - شین شالید
-    print(f"{BG_GREEN}{BOLD}{WHITE}{' ' * (term_width)}{RESET_BG}")
-    print(f"{BG_GREEN}{BOLD}{WHITE}{' ' * ((term_width - 44) // 2)}✓ INSTALLATION COMPLETED SUCCESSFULLY!{' ' * ((term_width - 44) // 2)}{RESET_BG}")
-    print(f"{BG_GREEN}{BOLD}{WHITE}{' ' * ((term_width - 52) // 2)}✓ FAROOQ TOOLS v2.7 IS READY TO USE!{' ' * ((term_width - 52) // 2)}{RESET_BG}")
-    print(f"{BG_GREEN}{BOLD}{WHITE}{' ' * (term_width)}{RESET_BG}")
+    # پای - خرمایی شالید (SaddleBrown)
+    print(f"{BG_BROWN}{BOLD}{WHITE}{' ' * (term_width)}{RESET_BG}")
+    print(f"{BG_BROWN}{BOLD}{WHITE}{' ' * ((term_width - 44) // 2)}✓ INSTALLATION COMPLETED SUCCESSFULLY!{' ' * ((term_width - 44) // 2)}{RESET_BG}")
+    print(f"{BG_BROWN}{BOLD}{WHITE}{' ' * ((term_width - 52) // 2)}✓ FAROOQ TOOLS v2.7 IS READY TO USE!{' ' * ((term_width - 52) // 2)}{RESET_BG}")
+    print(f"{BG_BROWN}{BOLD}{WHITE}{' ' * (term_width)}{RESET_BG}")
     
     time.sleep(2.5)
     
@@ -132,11 +136,11 @@ def fake_loading():
     print(f"{PINK}{BOLD}{' ' * ((term_width - 30) // 2)}ACCOUNT PROCESSING...{RESET_BG}")
     print(f"{PINK}{BOLD}{'=' * (term_width)}{RESET_BG}")
     
-    # د حساب روان انیمیشن
+    # د حساب روان انیمیشن - کرسر عدد د #b7f00f رنګ سره
     for percent in range(0, 101, 5):
         filled = int(50 * percent // 100)
         bar = "█" * filled + "░" * (50 - filled)
-        sys.stdout.write(f"\r{PINK}{BOLD}[{bar}] {percent}%{RESET_BG}")
+        sys.stdout.write(f"\r{PINK}{BOLD}[{bar}]{RESET_BG} {BOLD}{LIGHT_GREEN}{percent}%{RESET_BG}")
         sys.stdout.flush()
         time.sleep(random.uniform(0.05, 0.15))
     
@@ -933,16 +937,15 @@ class RANDOM:
             self.cok.append("no")
         else:
             self.cok.append("yes")
-        
-        # د کرک کولو پیل - منظم بکس
-        with ThreadPoolExecutor(max_workers=speed) as executor:
-            self.clear()
-            print(f"{GOLD_LINE}{BOLD}{'◇' * 54}{RESET}")
-            print(f"{GOLD_LINE}{BOLD}◆{RESET} {GOLD_LINE}Operator > {code}{' ' * (33 - len(str(code)))}{GOLD_LINE}{BOLD}◆{RESET}")
-            print(f"{GOLD_LINE}{BOLD}◆{RESET} {GOLD_LINE}Total Account > {G}{limit}{RESET}{' ' * (30 - len(str(limit)))}{GOLD_LINE}{BOLD}◆{RESET}")
-            print(f"{GOLD_LINE}{BOLD}◆{RESET} {GOLD_LINE}Use Airplane (Flight) Mode For Speed Up{ ' ' * 0}{GOLD_LINE}{BOLD}◆{RESET}")
-            print(f"{GOLD_LINE}{BOLD}{'◇' * 54}{RESET}")
-            self.linex()
+#━━━━━━━━━━━━〔━>><> >><<CLASS <><<━〕━━━━━━━━━━━━#     
+with ThreadPoolExecutor(max_workers=speed) as executor:
+    self.clear()
+    print(f"{GOLD_LINE}{BOLD}{'◇' * 54}{RESET}")
+    print(f"{GOLD_LINE}{BOLD}◆{RESET} {GOLD_LINE}Operator > {G}{code}{RESET}{' ' * (33 - len(str(code)))}{GOLD_LINE}{BOLD}◆{RESET}")
+    print(f"{GOLD_LINE}{BOLD}◆{RESET} {GOLD_LINE}Total Account > {G}{limit}{RESET}{' ' * (30 - len(str(limit)))}{GOLD_LINE}{BOLD}◆{RESET}")
+    print(f"{GOLD_LINE}{BOLD}◆{RESET} {GOLD_LINE}Use Airplane ({R}Flight{RESET}{GOLD_LINE}) Mode For Speed Up{ ' ' * 0}{GOLD_LINE}{BOLD}◆{RESET}")
+    print(f"{GOLD_LINE}{BOLD}{'◇' * 54}{RESET}")
+    self.linex()
             
             for love in self.user:
                 ids = code + love
