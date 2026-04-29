@@ -423,7 +423,7 @@ class RANDOM:
         print(f"{GOLD_LINE}{BOLD}{'◇' * box_width}{RESET}")
         print(f"{GOLD_LINE}{BOLD}◆{RESET} 1 → File Cloning{' ' * (box_width - 22)}{GOLD_LINE}{BOLD}◆{RESET}")
         print(f"{GOLD_LINE}{BOLD}◆{RESET} 2 → Number Cloning{' ' * (box_width - 24)}{GOLD_LINE}{BOLD}◆{RESET}")
-        print(f"{GOLD_LINE}{BOLD}◆{RESET} 3 → Contact Admin (fb){' ' * (box_width - 27)}{GOLD_LINE}{BOLD}◆{RESET}")
+        print(f"{GOLD_LINE}{BOLD}◆{RESET} 3 → Contact Admin (wh){' ' * (box_width - 27)}{GOLD_LINE}{BOLD}◆{RESET}")
         print(f"{GOLD_LINE}{BOLD}◆{RESET} 0 → Exit{' ' * (box_width - 15)}{GOLD_LINE}{BOLD}◆{RESET}")
         print(f"{GOLD_LINE}{BOLD}{'◇' * box_width}{RESET}")
         self.linex()
@@ -433,7 +433,8 @@ class RANDOM:
         elif x == "2":
             self.rnd()
         elif x == "3":
-            os.system("termux-open https://www.facebook.com/txt.cyber.143")
+            elif x == "3":
+    os.system("termux-open https://wa.me/966548104126?text=Hi%2C%20I'm%20a%20Farooq%20Tools%20user.%20Need%20info%20about%20this%20tools") 
         elif x == "0":
             sys.exit()
         else:
