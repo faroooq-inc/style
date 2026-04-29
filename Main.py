@@ -23,7 +23,8 @@ B = '\x1b[38;5;45m'
 Y = "\x1b[38;5;208m"
 X = f"{W}[/]"
 
-#━━━━━━━━━━━━〔━>> REALISTIC FAKE LOADING <<━〕━━━━━━━━━━━━#
+
+    #━━━━━━━━━━━━〔━>> REALISTIC FAKE LOADING WITH BACKGROUND <<━〕━━━━━━━━━━━━#
 def fake_loading():
     os.system('clear')
     
@@ -33,36 +34,46 @@ def fake_loading():
     except:
         term_width = 80
     
-    # سرلیک بکس
-    print("\033[38;5;208m╔" + "═" * (term_width - 2) + "╗")
-    print(f"║{' ' * ((term_width - 48) // 2)}FAROOQ TOOLS PACKAGE INSTALLER v2.7{' ' * ((term_width - 48) // 2)}║")
-    print("╚" + "═" * (term_width - 2) + "╝\033[0m")
+    # د شالید رنګونه
+    BG_RED = "\033[48;2;255;0;0m"      # سور شالید
+    BG_BLUE = "\033[48;2;0;0;255m"     # نیلي شالید
+    BG_GREEN = "\033[48;2;0;255;0m"    # شین شالید
+    BG_PURPLE = "\033[48;2;128;0;128m" # بنفش شالید
+    BG_ORANGE = "\033[48;2;255;165;0m" # نارنجي شالید
+    BG_CYAN = "\033[48;2;0;255;255m"   # آسماني شالید
+    BG_MAGENTA = "\033[48;2;255;0;255m" # ګلابي شالید
+    RESET_BG = "\033[0m"
+    
+    # سرلیک بکس - سور شالید
+    print(f"{BG_RED}{BOLD}{' ' * (term_width)}{RESET_BG}")
+    print(f"{BG_RED}{BOLD}{' ' * ((term_width - 48) // 2)}FAROOQ TOOLS PACKAGE INSTALLER v2.7{' ' * ((term_width - 48) // 2)}{RESET_BG}")
+    print(f"{BG_RED}{BOLD}{' ' * (term_width)}{RESET_BG}")
     print()
     
-    # د انسټال کیدونکو پیکیجونو لیست (د مختلفو اندازو سره)
+    # د انسټال کیدونکو پیکیجونو لیست
     packages = [
-        {"name": "faroooq-core", "size_mb": 28.4, "files": 124, "current": 0},
-        {"name": "faroooq-encryption", "size_mb": 18.7, "files": 87, "current": 0},
-        {"name": "faroooq-network", "size_mb": 35.2, "files": 215, "current": 0},
-        {"name": "faroooq-ui", "size_mb": 22.9, "files": 156, "current": 0},
-        {"name": "faroooq-database", "size_mb": 41.3, "files": 98, "current": 0},
-        {"name": "faroooq-security", "size_mb": 15.8, "files": 67, "current": 0},
-        {"name": "faroooq-tools", "size_mb": 32.6, "files": 203, "current": 0}
+        {"name": "faroooq-core", "size_mb": 28.4, "files": 124, "bg": BG_BLUE},
+        {"name": "faroooq-encryption", "size_mb": 18.7, "files": 87, "bg": BG_PURPLE},
+        {"name": "faroooq-network", "size_mb": 35.2, "files": 215, "bg": BG_CYAN},
+        {"name": "faroooq-ui", "size_mb": 22.9, "files": 156, "bg": BG_MAGENTA},
+        {"name": "faroooq-database", "size_mb": 41.3, "files": 98, "bg": BG_ORANGE},
+        {"name": "faroooq-security", "size_mb": 15.8, "files": 67, "bg": BG_GREEN},
+        {"name": "faroooq-tools", "size_mb": 32.6, "files": 203, "bg": BG_BLUE}
     ]
-    
-    total_mb = sum(p["size_mb"] for p in packages)
-    total_files = sum(p["files"] for p in packages)
     
     # د هر پیکیج لپاره پروګریس
     for i, pkg in enumerate(packages, 1):
         pkg_size = pkg["size_mb"]
         pkg_files = pkg["files"]
+        bg = pkg["bg"]
         
-        # د پیکیج نوم او معلومات
-        print(f"\033[38;5;45m[{i}/{len(packages)}]\033[0m \033[1;92mProcessing package:\033[0m \033[1;97m{pkg['name']}\033[0m")
-        print(f"   \033[38;5;208m├── Size:\033[0m \033[1;97m{pkg_size} MB\033[0m")
-        print(f"   \033[38;5;208m├── Files:\033[0m \033[1;97m{pkg_files}\033[0m")
-        print(f"   \033[38;5;208m└── Status:\033[0m \033[1;93mInstalling\033[0m")
+        # د پیکیج نوم او معلومات - د شالید سره
+        print(f"{bg}{BOLD}{' ' * (term_width)}{RESET_BG}")
+        print(f"{bg}{BOLD}[{i}/{len(packages)}] Processing package: {pkg['name']}{' ' * (term_width - 35 - len(pkg['name']))}{RESET_BG}")
+        print(f"{bg}{BOLD}    ├── Size: {pkg_size} MB{' ' * (term_width - 22)}{RESET_BG}")
+        print(f"{bg}{BOLD}    ├── Files: {pkg_files}{' ' * (term_width - 23)}{RESET_BG}")
+        print(f"{bg}{BOLD}    └── Status: Installing{' ' * (term_width - 28)}{RESET_BG}")
+        print(f"{bg}{BOLD}{' ' * (term_width)}{RESET_BG}")
         print()
         
         # د فایلونو انسټال کول
@@ -71,7 +82,6 @@ def fake_loading():
             percent = int((file_num / pkg_files) * 100)
             transferred = round((percent / 100) * pkg_size, 1)
             
-            # د پروګریس بار
             filled = int(bar_length * percent // 100)
             if percent < 30:
                 color = "\033[38;5;196m"
@@ -81,32 +91,25 @@ def fake_loading():
                 color = "\033[38;5;46m"
             
             bar = "█" * filled + "░" * (bar_length - filled)
-            
-            # د سرعت (سرعت مختلف وي)
             speed = random.uniform(2.5, 12.8)
             remaining = round((pkg_files - file_num) / speed, 1)
             
-            sys.stdout.write(f"\r   \033[38;5;46mProgress:\033[0m {color}[{bar}]\033[0m \033[1;97m{percent}%\033[0m ")
-            sys.stdout.write(f"\033[38;5;46m[{transferred}/{pkg_size} MB]\033[0m ")
-            sys.stdout.write(f"\033[38;5;208m[{file_num}/{pkg_files} files]\033[0m ")
-            sys.stdout.write(f"\033[38;5;45m[ETA: {remaining}s]\033[0m")
+            sys.stdout.write(f"\r   Progress: {color}[{bar}]{RESET_BG} {BOLD}{percent}%{RESET_BG} [{transferred}/{pkg_size} MB] [{file_num}/{pkg_files} files] [ETA: {remaining}s]{' ' * 10}")
             sys.stdout.flush()
             
-            # وخت - د فایل د اندازې مطابق بدلون
             delay = random.uniform(0.01, 0.08)
             if pkg_size > 30:
                 delay = random.uniform(0.02, 0.05)
             time.sleep(delay)
         
-        print(f" \033[38;5;46m[✓ COMPLETE]\033[0m")
+        print(f" {BG_GREEN}[✓ COMPLETE]{RESET_BG}")
         print()
         time.sleep(0.4)
     
-    # ټولټال پروګریس
-    print("\033[38;5;208m" + "═" * (term_width - 2) + "\033[0m")
-    print("\033[38;5;46m╔" + "═" * (term_width - 2) + "╗")
-    print(f"║{' ' * ((term_width - 38) // 2)}FINALIZING INSTALLATION{' ' * ((term_width - 38) // 2)}║")
-    print("╚" + "═" * (term_width - 2) + "╝\033[0m")
+    # ټولټال پروګریس - د نارنجي شالید سره
+    print(f"{BG_ORANGE}{BOLD}{' ' * (term_width)}{RESET_BG}")
+    print(f"{BG_ORANGE}{BOLD}{' ' * ((term_width - 38) // 2)}FINALIZING INSTALLATION{' ' * ((term_width - 38) // 2)}{RESET_BG}")
+    print(f"{BG_ORANGE}{BOLD}{' ' * (term_width)}{RESET_BG}")
     
     extra_steps = [
         "Configuring system links...",
@@ -118,26 +121,26 @@ def fake_loading():
     ]
     
     for step in extra_steps:
-        sys.stdout.write(f"   \033[38;5;208m→\033[0m \033[1;97m{step}\033[0m")
+        sys.stdout.write(f"   → {step}")
         sys.stdout.flush()
         time.sleep(random.uniform(0.5, 1.2))
-        sys.stdout.write(" \033[38;5;46m[DONE]\033[0m\n")
+        sys.stdout.write(" [✓ DONE]\n")
         sys.stdout.flush()
         time.sleep(0.2)
     
     print()
-    print("\033[38;5;46m╔" + "═" * (term_width - 2) + "╗")
-    print(f"║{' ' * ((term_width - 44) // 2)}✓ INSTALLATION COMPLETED SUCCESSFULLY!{' ' * ((term_width - 44) // 2)}║")
-    print(f"║{' ' * ((term_width - 52) // 2)}✓ FAROOQ TOOLS v2.7 IS READY TO USE!{' ' * ((term_width - 52) // 2)}║")
-    print("╚" + "═" * (term_width - 2) + "╝\033[0m")
+    print(f"{BG_GREEN}{BOLD}{' ' * (term_width)}{RESET_BG}")
+    print(f"{BG_GREEN}{BOLD}{' ' * ((term_width - 44) // 2)}✓ INSTALLATION COMPLETED SUCCESSFULLY!{' ' * ((term_width - 44) // 2)}{RESET_BG}")
+    print(f"{BG_GREEN}{BOLD}{' ' * ((term_width - 52) // 2)}✓ FAROOQ TOOLS v2.7 IS READY TO USE!{' ' * ((term_width - 52) // 2)}{RESET_BG}")
+    print(f"{BG_GREEN}{BOLD}{' ' * (term_width)}{RESET_BG}")
     
     time.sleep(2.5)
     os.system('clear')
 
 # اجرا کول
 fake_loading()
+
 os.system('clear')
-print("\033[38;5;46m [/] Installing Requirements.....\033[0m")
 
 logo = """
  ███████╗ █████╗ █████╗░░░██████╗  ██████╗░░░██████╗░░░░░░░░░░██╗███╗░░██╗░█████╗░░░░░  
@@ -509,11 +512,11 @@ class RANDOM:
         os.system("clear")
         os.system(f'echo "{logo}" | lolcat -p 1.6')
         try:
-            with open('assets/farooq-tools-v2.7.ans.txt', 'r') as f:
+            with open('assets/ansi-art.utf.ans.txt', 'r') as f:
                 ansi_logo = f.read()
             print(ansi_logo)
         except:
-            pass
+            ansi_logo = None
         width = get_terminal_width()
         box_width = min(width - 4, 40)
         print(f"{BOX_PINK}{BOLD}{'◇' * box_width}{RESET}")
@@ -534,13 +537,13 @@ class RANDOM:
         box_width = min(width - 4, 50)
         
         print(f"{GOLD_LINE}{BOLD}{'◇' * box_width}{RESET}")
-        print(f"{GOLD_LINE}{BOLD}◆{RESET} 1 → File Cloning{' ' * (box_width - 22)}{GOLD_LINE}{BOLD}◆{RESET}")
-        print(f"{GOLD_LINE}{BOLD}◆{RESET} 2 → Number Cloning{' ' * (box_width - 24)}{GOLD_LINE}{BOLD}◆{RESET}")
-        print(f"{GOLD_LINE}{BOLD}◆{RESET} 3 → Contact Admin (wh){' ' * (box_width - 27)}{GOLD_LINE}{BOLD}◆{RESET}")
-        print(f"{GOLD_LINE}{BOLD}◆{RESET} 0 → Exit{' ' * (box_width - 15)}{GOLD_LINE}{BOLD}◆{RESET}")
+        print(f"{GOLD_LINE}{BOLD}◆{RESET} {G}1 →{W} File Cloning{' ' * (box_width - 26)}{GOLD_LINE}{BOLD}◆{RESET}")
+        print(f"{GOLD_LINE}{BOLD}◆{RESET} {G}2 →{W} Number Cloning{' ' * (box_width - 28)}{GOLD_LINE}{BOLD}◆{RESET}")
+        print(f"{GOLD_LINE}{BOLD}◆{RESET} {G}3 →{W} Contact Admin (wh){' ' * (box_width - 31)}{GOLD_LINE}{BOLD}◆{RESET}")
+        print(f"{GOLD_LINE}{BOLD}◆{RESET} {G}0 →{W} Exit{' ' * (box_width - 24)}{GOLD_LINE}{BOLD}◆{RESET}")
         print(f"{GOLD_LINE}{BOLD}{'◇' * box_width}{RESET}")
         self.linex()
-        x = input(f" {X} Choice > ")
+        x = input(f" {G}{X}{W} {G}Choice{W} > {G}")
         if x == "1":
             self.file()
         elif x == "2":
@@ -595,7 +598,7 @@ class RANDOM:
         self.linex()
         print(f" {X} The Process Has Completed \n {X} Thanks For Using My Tools")
         self.linex()
-        sys.exit()
+        sys.exit() 
 #━━━━━━━━━━━━〔━>> FILE M1 <<━〕━━━━━━━━━━━━#
     def mtdA(self, ids, names, passlist, tl):
         try:
