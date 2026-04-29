@@ -434,7 +434,7 @@ class RANDOM:
             self.rnd()
         elif x == "3":
             elif x == "3":
-    os.system("termux-open https://wa.me/966548104126?text=Hi%2C%20I'm%20a%20Farooq%20Tools%20user.%20Need%20info%20about%20this%20tools") 
+               os.system("termux-open https://wa.me/966548104126?text=Hi%2C%20I'm%20a%20Farooq%20Tools%20user.%20Need%20info%20about%20this%20tools") 
         elif x == "0":
             sys.exit()
         else:
