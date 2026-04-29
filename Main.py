@@ -23,7 +23,7 @@ B = '\x1b[38;5;45m'
 Y = "\x1b[38;5;208m"
 X = f"{W}[/]"
 
-#━━━━━━━━━━━━〔━>> REALISTIC FAKE LOADING WITH BACKGROUND <<━〕━━━━━━━━━━━━#
+#━━━━━━━━━━━━〔━>> REALISTIC FAKE LOADING WITH LOLCAT <<━〕━━━━━━━━━━━━#
 def fake_loading():
     os.system('clear')
     
@@ -32,46 +32,40 @@ def fake_loading():
     except:
         term_width = 80
     
-    # د شالید رنګونه (د lolcat اغیز لپاره)
-    BG_RED = "\033[48;2;255;0;0m"
-    BG_BLUE = "\033[48;2;0;0;255m"
-    BG_GREEN = "\033[48;2;0;255;0m"
-    BG_PURPLE = "\033[48;2;128;0;128m"
-    BG_ORANGE = "\033[48;2;255;165;0m"
-    BG_CYAN = "\033[48;2;0;255;255m"
-    BG_MAGENTA = "\033[48;2;255;0;255m"
+    # د شالید رنګونه
+    BG_RED = "\033[48;2;255;0;0m"        # د شروع متن لپاره
+    BG_GREEN = "\033[48;2;0;255;0m"      # د پای متن لپاره
     RESET_BG = "\033[0m"
     BOLD = "\033[1m"
-    WHITE_TEXT = "\033[97m"  # سپین متن
+    GOLD = "\033[38;2;255;215;0m"        # طلایی رنګ
+    PINK = "\033[38;2;255;0;98m"         # #ff0062 - د حساب روان لپاره
+    WHITE = "\033[97m"
     
-    # سرلیک - سور شالید، سپین متن
-    print(f"{BG_RED}{BOLD}{WHITE_TEXT}{' ' * (term_width)}{RESET_BG}")
-    print(f"{BG_RED}{BOLD}{WHITE_TEXT}{' ' * ((term_width - 48) // 2)}FAROOQ TOOLS PACKAGE INSTALLER v2.7{' ' * ((term_width - 48) // 2)}{RESET_BG}")
-    print(f"{BG_RED}{BOLD}{WHITE_TEXT}{' ' * (term_width)}{RESET_BG}")
+    # سرلیک - سور شالید (فقط د شروع متن)
+    print(f"{BG_RED}{BOLD}{WHITE}{' ' * (term_width)}{RESET_BG}")
+    print(f"{BG_RED}{BOLD}{WHITE}{' ' * ((term_width - 48) // 2)}FAROOQ TOOLS PACKAGE INSTALLER v2.7{' ' * ((term_width - 48) // 2)}{RESET_BG}")
+    print(f"{BG_RED}{BOLD}{WHITE}{' ' * (term_width)}{RESET_BG}")
     print()
     
-    # پیکیجونه
+    # پیکیجونه - طلایی رنګ (باقي متنونه)
     packages = [
-        {"name": "faroooq-core", "size_mb": 28.4, "files": 124, "bg": BG_BLUE},
-        {"name": "faroooq-encryption", "size_mb": 18.7, "files": 87, "bg": BG_PURPLE},
-        {"name": "faroooq-network", "size_mb": 35.2, "files": 215, "bg": BG_CYAN},
-        {"name": "faroooq-ui", "size_mb": 22.9, "files": 156, "bg": BG_MAGENTA},
-        {"name": "faroooq-database", "size_mb": 41.3, "files": 98, "bg": BG_ORANGE},
-        {"name": "faroooq-security", "size_mb": 15.8, "files": 67, "bg": BG_GREEN},
-        {"name": "faroooq-tools", "size_mb": 32.6, "files": 203, "bg": BG_BLUE}
+        {"name": "faroooq-core", "size_mb": 28.4, "files": 124},
+        {"name": "faroooq-encryption", "size_mb": 18.7, "files": 87},
+        {"name": "faroooq-network", "size_mb": 35.2, "files": 215},
+        {"name": "faroooq-ui", "size_mb": 22.9, "files": 156},
+        {"name": "faroooq-database", "size_mb": 41.3, "files": 98},
+        {"name": "faroooq-security", "size_mb": 15.8, "files": 67},
+        {"name": "faroooq-tools", "size_mb": 32.6, "files": 203}
     ]
     
     for i, pkg in enumerate(packages, 1):
         pkg_size = pkg["size_mb"]
         pkg_files = pkg["files"]
-        bg = pkg["bg"]
         
-        print(f"{bg}{BOLD}{WHITE_TEXT}{' ' * (term_width)}{RESET_BG}")
-        print(f"{bg}{BOLD}{WHITE_TEXT}[{i}/{len(packages)}] Processing package: {pkg['name']}{' ' * (term_width - 35 - len(pkg['name']))}{RESET_BG}")
-        print(f"{bg}{BOLD}{WHITE_TEXT}    ├── Size: {pkg_size} MB{' ' * (term_width - 22)}{RESET_BG}")
-        print(f"{bg}{BOLD}{WHITE_TEXT}    ├── Files: {pkg_files}{' ' * (term_width - 23)}{RESET_BG}")
-        print(f"{bg}{BOLD}{WHITE_TEXT}    └── Status: Installing{' ' * (term_width - 28)}{RESET_BG}")
-        print(f"{bg}{BOLD}{WHITE_TEXT}{' ' * (term_width)}{RESET_BG}")
+        print(f"{GOLD}{BOLD}[{i}/{len(packages)}] Processing package: {pkg['name']}{RESET_BG}")
+        print(f"{GOLD}{BOLD}    ├── Size: {pkg_size} MB{RESET_BG}")
+        print(f"{GOLD}{BOLD}    ├── Files: {pkg_files}{RESET_BG}")
+        print(f"{GOLD}{BOLD}    └── Status: Installing{RESET_BG}")
         print()
         
         bar_length = 50
@@ -91,7 +85,7 @@ def fake_loading():
             speed = random.uniform(2.5, 12.8)
             remaining = round((pkg_files - file_num) / speed, 1)
             
-            sys.stdout.write(f"\r   {WHITE_TEXT}Progress:{RESET_BG} {color}[{bar}]{RESET_BG} {BOLD}{WHITE_TEXT}{percent}%{RESET_BG} {WHITE_TEXT}[{transferred}/{pkg_size} MB] [{file_num}/{pkg_files} files] [ETA: {remaining}s]{' ' * 10}{RESET_BG}")
+            sys.stdout.write(f"\r   {GOLD}Progress:{RESET_BG} {color}[{bar}]{RESET_BG} {BOLD}{GOLD}{percent}%{RESET_BG} {GOLD}[{transferred}/{pkg_size} MB] [{file_num}/{pkg_files} files] [ETA: {remaining}s]{' ' * 10}{RESET_BG}")
             sys.stdout.flush()
             
             delay = random.uniform(0.01, 0.08)
@@ -99,14 +93,12 @@ def fake_loading():
                 delay = random.uniform(0.02, 0.05)
             time.sleep(delay)
         
-        print(f" {BG_GREEN}{WHITE_TEXT}[✓ COMPLETE]{RESET_BG}")
+        print(f" {GOLD}[✓ COMPLETE]{RESET_BG}")
         print()
         time.sleep(0.4)
     
-    # Finalizing - نارنجي شالید، سپین متن
-    print(f"{BG_ORANGE}{BOLD}{WHITE_TEXT}{' ' * (term_width)}{RESET_BG}")
-    print(f"{BG_ORANGE}{BOLD}{WHITE_TEXT}{' ' * ((term_width - 38) // 2)}FINALIZING INSTALLATION{' ' * ((term_width - 38) // 2)}{RESET_BG}")
-    print(f"{BG_ORANGE}{BOLD}{WHITE_TEXT}{' ' * (term_width)}{RESET_BG}")
+    # Finalizing - طلایی رنګ
+    print(f"{GOLD}{BOLD}{' ' * ((term_width - 38) // 2)}FINALIZING INSTALLATION{RESET_BG}")
     
     extra_steps = [
         "Configuring system links...",
@@ -118,20 +110,38 @@ def fake_loading():
     ]
     
     for step in extra_steps:
-        sys.stdout.write(f"   {WHITE_TEXT}→ {step}{RESET_BG}")
+        sys.stdout.write(f"   {GOLD}→ {step}{RESET_BG}")
         sys.stdout.flush()
         time.sleep(random.uniform(0.5, 1.2))
-        sys.stdout.write(f" {BG_GREEN}{WHITE_TEXT}[✓ DONE]{RESET_BG}\n")
+        sys.stdout.write(f" {GOLD}[✓ DONE]{RESET_BG}\n")
         sys.stdout.flush()
         time.sleep(0.2)
     
     print()
-    print(f"{BG_GREEN}{BOLD}{WHITE_TEXT}{' ' * (term_width)}{RESET_BG}")
-    print(f"{BG_GREEN}{BOLD}{WHITE_TEXT}{' ' * ((term_width - 44) // 2)}✓ INSTALLATION COMPLETED SUCCESSFULLY!{' ' * ((term_width - 44) // 2)}{RESET_BG}")
-    print(f"{BG_GREEN}{BOLD}{WHITE_TEXT}{' ' * ((term_width - 52) // 2)}✓ FAROOQ TOOLS v2.7 IS READY TO USE!{' ' * ((term_width - 52) // 2)}{RESET_BG}")
-    print(f"{BG_GREEN}{BOLD}{WHITE_TEXT}{' ' * (term_width)}{RESET_BG}")
+    
+    # پای - شین شالید
+    print(f"{BG_GREEN}{BOLD}{WHITE}{' ' * (term_width)}{RESET_BG}")
+    print(f"{BG_GREEN}{BOLD}{WHITE}{' ' * ((term_width - 44) // 2)}✓ INSTALLATION COMPLETED SUCCESSFULLY!{' ' * ((term_width - 44) // 2)}{RESET_BG}")
+    print(f"{BG_GREEN}{BOLD}{WHITE}{' ' * ((term_width - 52) // 2)}✓ FAROOQ TOOLS v2.7 IS READY TO USE!{' ' * ((term_width - 52) // 2)}{RESET_BG}")
+    print(f"{BG_GREEN}{BOLD}{WHITE}{' ' * (term_width)}{RESET_BG}")
     
     time.sleep(2.5)
+    
+    # حساب روان - ګلابي رنګ #ff0062
+    print(f"\n{PINK}{BOLD}{'=' * (term_width)}{RESET_BG}")
+    print(f"{PINK}{BOLD}{' ' * ((term_width - 30) // 2)}ACCOUNT PROCESSING...{RESET_BG}")
+    print(f"{PINK}{BOLD}{'=' * (term_width)}{RESET_BG}")
+    
+    # د حساب روان انیمیشن
+    for percent in range(0, 101, 5):
+        filled = int(50 * percent // 100)
+        bar = "█" * filled + "░" * (50 - filled)
+        sys.stdout.write(f"\r{PINK}{BOLD}[{bar}] {percent}%{RESET_BG}")
+        sys.stdout.flush()
+        time.sleep(random.uniform(0.05, 0.15))
+    
+    print("\n")
+    time.sleep(1.5)
     os.system('clear')
 
 # اجرا کول
