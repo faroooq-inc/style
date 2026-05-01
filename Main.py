@@ -24,6 +24,7 @@ Y = "\x1b[38;5;208m"
 X = f"{W}[/]"
 
 #━━━━━━━━━━━━〔━>> REALISTIC FAKE LOADING WITH LOLCAT <<━〕━━━━━━━━━━━━#
+#━━━━━━━━━━━━〔━>> REALISTIC FAKE LOADING WITH LOLCAT <<━〕━━━━━━━━━━━━#
 def fake_loading():
     os.system('clear')
     
@@ -33,19 +34,19 @@ def fake_loading():
         term_width = 80
     
     # د شالید رنګونه
-    BG_RED = "\033[48;2;255;0;0m"        # د شروع متن لپاره
+    BG_GOLD = "\033[48;2;255;215;0m"     # طلایی شالید (د سور پر ځای)
     BG_BROWN = "\033[48;2;139;69;19m"    # خرمایی رنګ (SaddleBrown) د پای لپاره
     RESET_BG = "\033[0m"
     BOLD = "\033[1m"
-    GOLD = "\033[38;2;255;215;0m"        # طلایی رنګ
+    GREEN_NEW = "\033[38;2;0;255;0m"     # زرغون رنګ (د طلایی پر ځای)
     PINK = "\033[38;2;255;0;98m"         # #ff0062 - د پیکیجونو لپاره
     LIGHT_GREEN = "\033[38;2;183;240;15m" # #b7f00f - د کرسر عدد لپاره
     WHITE = "\033[97m"
     
-    # سرلیک - سور شالید
-    print(f"{BG_RED}{BOLD}{WHITE}{' ' * (term_width)}{RESET_BG}")
-    print(f"{BG_RED}{BOLD}{WHITE}{' ' * ((term_width - 48) // 2)}FAROOQ TOOLS PACKAGE INSTALLER v2.7{' ' * ((term_width - 48) // 2)}{RESET_BG}")
-    print(f"{BG_RED}{BOLD}{WHITE}{' ' * (term_width)}{RESET_BG}")
+    # سرلیک - طلایی شالید
+    print(f"{BG_GOLD}{BOLD}{WHITE}{' ' * (term_width)}{RESET_BG}")
+    print(f"{BG_GOLD}{BOLD}{WHITE}{' ' * ((term_width - 48) // 2)}FAROOQ TOOLS PACKAGE INSTALLER v2.7{' ' * ((term_width - 48) // 2)}{RESET_BG}")
+    print(f"{BG_GOLD}{BOLD}{WHITE}{' ' * (term_width)}{RESET_BG}")
     print()
     
     # پیکیجونه - د پاسورډ رنګ #ff0062
@@ -63,7 +64,6 @@ def fake_loading():
         pkg_size = pkg["size_mb"]
         pkg_files = pkg["files"]
         
-        # د پیکیج معلومات د PINK رنګ سره (#ff0062)
         print(f"{PINK}{BOLD}[{i}/{len(packages)}] Processing package: {pkg['name']}{RESET_BG}")
         print(f"{PINK}{BOLD}    ├── Size: {pkg_size} MB{RESET_BG}")
         print(f"{PINK}{BOLD}    ├── Files: {pkg_files}{RESET_BG}")
@@ -87,7 +87,6 @@ def fake_loading():
             speed = random.uniform(2.5, 12.8)
             remaining = round((pkg_files - file_num) / speed, 1)
             
-            # د Progress کلمه بدله شوه "Installing" ته
             sys.stdout.write(f"\r   {PINK}Installing:{RESET_BG} {color}[{bar}]{RESET_BG} {BOLD}{LIGHT_GREEN}{percent}%{RESET_BG} {PINK}[{transferred}/{pkg_size} MB] [{file_num}/{pkg_files} files] [ETA: {remaining}s]{' ' * 10}{RESET_BG}")
             sys.stdout.flush()
             
@@ -96,13 +95,12 @@ def fake_loading():
                 delay = random.uniform(0.02, 0.05)
             time.sleep(delay)
         
-        # د پیکیج بشپړیدو پیغام
         print(f" {PINK}[✓ COMPLETE]{RESET_BG}")
         print()
         time.sleep(0.4)
     
-    # Finalizing - طلایی رنګ
-    print(f"{GOLD}{BOLD}{' ' * ((term_width - 38) // 2)}FINALIZING INSTALLATION{RESET_BG}")
+    # Finalizing - زرغون رنګ (چې مخکې طلایی و)
+    print(f"{GREEN_NEW}{BOLD}{' ' * ((term_width - 38) // 2)}FINALIZING INSTALLATION{RESET_BG}")
     
     extra_steps = [
         "Configuring system links...",
@@ -114,10 +112,10 @@ def fake_loading():
     ]
     
     for step in extra_steps:
-        sys.stdout.write(f"   {GOLD}→ {step}{RESET_BG}")
+        sys.stdout.write(f"   {GREEN_NEW}→ {step}{RESET_BG}")
         sys.stdout.flush()
         time.sleep(random.uniform(0.5, 1.2))
-        sys.stdout.write(f" {GOLD}[✓ DONE]{RESET_BG}\n")
+        sys.stdout.write(f" {GREEN_NEW}[✓ DONE]{RESET_BG}\n")
         sys.stdout.flush()
         time.sleep(0.2)
     
@@ -136,7 +134,6 @@ def fake_loading():
     print(f"{PINK}{BOLD}{' ' * ((term_width - 30) // 2)}ACCOUNT PROCESSING...{RESET_BG}")
     print(f"{PINK}{BOLD}{'=' * (term_width)}{RESET_BG}")
     
-    # د حساب روان انیمیشن - کرسر عدد د #b7f00f رنګ سره
     for percent in range(0, 101, 5):
         filled = int(50 * percent // 100)
         bar = "█" * filled + "░" * (50 - filled)
@@ -146,11 +143,7 @@ def fake_loading():
     
     print("\n")
     time.sleep(1.5)
-    os.system('clear')
-
-# اجرا کول
-fake_loading()
-
+    os.system('clear') 
 os.system('clear')
 
 logo = """
@@ -159,7 +152,7 @@ logo = """
  █████╗░ ███████║██████╔╝██║░░░██║██║░░░██║ ██║░░░██║░██████╗░██║██╔██╗██║██║░░╚═╝░░░░ 
  ██╔══╝░ ██╔══██║██╔══██╗██║░░░██║██║░░░██║ ██║▄▄░██║░╚═════╝░██║██║╚████║██║░░██╗░░░░  
  ██║░░░░ ██║░░██║██║░░██║╚██████╔╝╚██████╔╝░╚██████╔╝░░░░░░░░░██║██║░╚███║╚█████╔╝░░░░  
- ╚═╝░░░░ ╚═╝░░╚═╝╚═╝░░╚═╝░╚═════╝░░╚═════╝░░░╚══▀▀═╝░░░░░░░░░░╚═╝╚═╝░░╚══╝░╚════╝░░░░░  V2.7
+ ╚═╝░░░░ ╚═╝░░╚═╝╚═╝░░╚═╝░╚═════╝░░╚═════╝░░░╚══▀▀═╝░░░V2.7░░░╚═╝╚═╝░░╚══╝░╚════╝░░░░░
 """
 
 #━━━━━━━━━━━━〔━>> WELCOME & BOX & PROMPT <<━〕━━━━━━━━━━━━#
