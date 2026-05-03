@@ -37,9 +37,9 @@ def fake_loading():
     BG_BROWN = "\033[48;2;139;69;19m"    # خرمایی رنګ
     RESET_BG = "\033[0m"
     BOLD = "\033[1m"
-    GREEN_NEW = "\033[38;2;0;255;0m"     # زرغون رنګ
-    PINK = "\033[38;2;255;0;98m"         # #ff0062
-    LIGHT_GREEN = "\033[38;2;183;240;15m" # #b7f00f
+    GOLD = "\033[38;2;255;215;0m"        # طلایی رنګ (د Installing او عددونو لپاره)
+    GREEN_NEW = "\033[38;2;0;255;0m"     # زرغون رنګ (د COMPLETE لپاره)
+    LIGHT_GREEN = "\033[38;2;183;240;15m" # #b7f00f - د کرسر عدد لپاره
     WHITE = "\033[97m"
     
     # سرلیک - طلایی شالید
@@ -63,10 +63,11 @@ def fake_loading():
         pkg_size = pkg["size_mb"]
         pkg_files = pkg["files"]
         
-        print(f"{PINK}{BOLD}[{i}/{len(packages)}] Processing package: {pkg['name']}{RESET_BG}")
-        print(f"{PINK}{BOLD}    ├── Size: {pkg_size} MB{RESET_BG}")
-        print(f"{PINK}{BOLD}    ├── Files: {pkg_files}{RESET_BG}")
-        print(f"{PINK}{BOLD}    └── Status: Installing{RESET_BG}")
+        # د پیکیج معلومات - طلایی رنګ
+        print(f"{GOLD}{BOLD}[{i}/{len(packages)}] Processing package: {pkg['name']}{RESET_BG}")
+        print(f"{GOLD}{BOLD}    ├── Size: {pkg_size} MB{RESET_BG}")
+        print(f"{GOLD}{BOLD}    ├── Files: {pkg_files}{RESET_BG}")
+        print(f"{GOLD}{BOLD}    └── Status: Installing{RESET_BG}")
         print()
         
         bar_length = 50
@@ -86,7 +87,8 @@ def fake_loading():
             speed = random.uniform(2.5, 12.8)
             remaining = round((pkg_files - file_num) / speed, 1)
             
-            sys.stdout.write(f"\r   {PINK}Installing:{RESET_BG} {color}[{bar}]{RESET_BG} {BOLD}{LIGHT_GREEN}{percent}%{RESET_BG} {PINK}[{transferred}/{pkg_size} MB] [{file_num}/{pkg_files} files] [ETA: {remaining}s]{' ' * 10}{RESET_BG}")
+            # Installing او عددونه - طلایی رنګ
+            sys.stdout.write(f"\r   {GOLD}Installing:{RESET_BG} {color}[{bar}]{RESET_BG} {BOLD}{LIGHT_GREEN}{percent}%{RESET_BG} {GOLD}[{transferred}/{pkg_size} MB] [{file_num}/{pkg_files} files] [ETA: {remaining}s]{' ' * 10}{RESET_BG}")
             sys.stdout.flush()
             
             delay = random.uniform(0.01, 0.08)
@@ -94,7 +96,8 @@ def fake_loading():
                 delay = random.uniform(0.02, 0.05)
             time.sleep(delay)
         
-        print(f" {PINK}[✓ COMPLETE]{RESET_BG}")
+        # د پیکیج بشپړیدو پیغام - زرغون رنګ
+        print(f" {GREEN_NEW}[✓ COMPLETE]{RESET_BG}")
         print()
         time.sleep(0.4)
     
@@ -128,15 +131,15 @@ def fake_loading():
     
     time.sleep(2.5)
     
-    # حساب روان - ګلابي رنګ #ff0062
-    print(f"\n{PINK}{BOLD}{'=' * (term_width)}{RESET_BG}")
-    print(f"{PINK}{BOLD}{' ' * ((term_width - 30) // 2)}ACCOUNT PROCESSING...{RESET_BG}")
-    print(f"{PINK}{BOLD}{'=' * (term_width)}{RESET_BG}")
+    # حساب روان - طلایی رنګ
+    print(f"\n{GOLD}{BOLD}{'=' * (term_width)}{RESET_BG}")
+    print(f"{GOLD}{BOLD}{' ' * ((term_width - 30) // 2)}ACCOUNT PROCESSING...{RESET_BG}")
+    print(f"{GOLD}{BOLD}{'=' * (term_width)}{RESET_BG}")
     
     for percent in range(0, 101, 5):
         filled = int(50 * percent // 100)
         bar = "█" * filled + "░" * (50 - filled)
-        sys.stdout.write(f"\r{PINK}{BOLD}[{bar}]{RESET_BG} {BOLD}{LIGHT_GREEN}{percent}%{RESET_BG}")
+        sys.stdout.write(f"\r{GOLD}{BOLD}[{bar}]{RESET_BG} {BOLD}{LIGHT_GREEN}{percent}%{RESET_BG}")
         sys.stdout.flush()
         time.sleep(random.uniform(0.05, 0.15))
     
