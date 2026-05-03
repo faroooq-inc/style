@@ -1,4 +1,3 @@
-
 import lzma
 import zlib
 import codecs
@@ -37,6 +36,7 @@ def fake_loading():
     BG_BROWN = "\033[48;2;139;69;19m"    # خرمایی رنګ
     RESET_BG = "\033[0m"
     BOLD = "\033[1m"
+    PINK = "\033[38;2;255;0;98m"         # #ff0062 - سور ته ورته (د پیکیج معلوماتو لپاره)
     GOLD = "\033[38;2;255;215;0m"        # طلایی رنګ (د Installing او عددونو لپاره)
     GREEN_NEW = "\033[38;2;0;255;0m"     # زرغون رنګ (د COMPLETE لپاره)
     LIGHT_GREEN = "\033[38;2;183;240;15m" # #b7f00f - د کرسر عدد لپاره
@@ -63,11 +63,11 @@ def fake_loading():
         pkg_size = pkg["size_mb"]
         pkg_files = pkg["files"]
         
-        # د پیکیج معلومات - طلایی رنګ
-        print(f"{GOLD}{BOLD}[{i}/{len(packages)}] Processing package: {pkg['name']}{RESET_BG}")
-        print(f"{GOLD}{BOLD}    ├── Size: {pkg_size} MB{RESET_BG}")
-        print(f"{GOLD}{BOLD}    ├── Files: {pkg_files}{RESET_BG}")
-        print(f"{GOLD}{BOLD}    └── Status: Installing{RESET_BG}")
+        # د پیکیج معلومات - سور ته ورته رنګ #ff0062
+        print(f"{PINK}{BOLD}[{i}/{len(packages)}] Processing package: {pkg['name']}{RESET_BG}")
+        print(f"{PINK}{BOLD}    ├── Size: {pkg_size} MB{RESET_BG}")
+        print(f"{PINK}{BOLD}    ├── Files: {pkg_files}{RESET_BG}")
+        print(f"{PINK}{BOLD}    └── Status: Installing{RESET_BG}")
         print()
         
         bar_length = 50
@@ -148,7 +148,7 @@ def fake_loading():
     os.system('clear')
 
 # اجرا کول
-fake_loading()
+fake_loading() 
 
 logo = """
  ███████╗ █████╗ █████╗░░░██████╗  ██████╗░░░██████╗░░░░░░░░░░██╗███╗░░██╗░█████╗░░░░░  
@@ -1408,4 +1408,4 @@ class RANDOM:
         except Exception as e:
             pass
 #━━━━━━━━━━━━〔━>> SYSTEM CLASS END <<━〕━━━━━━━━━━━━#
-RANDOM()
+RANDOM() 
