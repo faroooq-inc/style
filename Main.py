@@ -33,13 +33,13 @@ def fake_loading():
         term_width = 80
     
     # د شالید رنګونه
-    BG_GOLD = "\033[48;2;255;215;0m"     # طلایی شالید (د سور پر ځای)
-    BG_BROWN = "\033[48;2;139;69;19m"    # خرمایی رنګ (SaddleBrown) د پای لپاره
+    BG_GOLD = "\033[48;2;255;215;0m"     # طلایی شالید
+    BG_BROWN = "\033[48;2;139;69;19m"    # خرمایی رنګ
     RESET_BG = "\033[0m"
     BOLD = "\033[1m"
-    GREEN_NEW = "\033[38;2;0;255;0m"     # زرغون رنګ (د طلایی پر ځای)
-    PINK = "\033[38;2;255;0;98m"         # #ff0062 - د پیکیجونو لپاره
-    LIGHT_GREEN = "\033[38;2;183;240;15m" # #b7f00f - د کرسر عدد لپاره
+    GREEN_NEW = "\033[38;2;0;255;0m"     # زرغون رنګ
+    PINK = "\033[38;2;255;0;98m"         # #ff0062
+    LIGHT_GREEN = "\033[38;2;183;240;15m" # #b7f00f
     WHITE = "\033[97m"
     
     # سرلیک - طلایی شالید
@@ -48,7 +48,7 @@ def fake_loading():
     print(f"{BG_GOLD}{BOLD}{WHITE}{' ' * (term_width)}{RESET_BG}")
     print()
     
-    # پیکیجونه - د پاسورډ رنګ #ff0062
+    # پیکیجونه
     packages = [
         {"name": "faroooq-core", "size_mb": 28.4, "files": 124},
         {"name": "faroooq-encryption", "size_mb": 18.7, "files": 87},
@@ -98,7 +98,7 @@ def fake_loading():
         print()
         time.sleep(0.4)
     
-    # Finalizing - زرغون رنګ (چې مخکې طلایی و)
+    # Finalizing - زرغون رنګ
     print(f"{GREEN_NEW}{BOLD}{' ' * ((term_width - 38) // 2)}FINALIZING INSTALLATION{RESET_BG}")
     
     extra_steps = [
@@ -120,7 +120,7 @@ def fake_loading():
     
     print()
     
-    # پای - خرمایی شالید (SaddleBrown)
+    # پای - خرمایی شالید
     print(f"{BG_BROWN}{BOLD}{WHITE}{' ' * (term_width)}{RESET_BG}")
     print(f"{BG_BROWN}{BOLD}{WHITE}{' ' * ((term_width - 44) // 2)}✓ INSTALLATION COMPLETED SUCCESSFULLY!{' ' * ((term_width - 44) // 2)}{RESET_BG}")
     print(f"{BG_BROWN}{BOLD}{WHITE}{' ' * ((term_width - 52) // 2)}✓ FAROOQ TOOLS v2.7 IS READY TO USE!{' ' * ((term_width - 52) // 2)}{RESET_BG}")
@@ -142,9 +142,9 @@ def fake_loading():
     
     print("\n")
     time.sleep(1.5)
-   os.system('clear')
-    
-#━━━━━━━━━━━━〔━>> اجرا کول <<━〕━━━━━━━━━━━━#
+    os.system('clear')
+
+# اجرا کول
 fake_loading()
 
 logo = """
@@ -157,7 +157,6 @@ logo = """
 """
 
 #━━━━━━━━━━━━〔━>> WELCOME & BOX & PROMPT <<━〕━━━━━━━━━━━━#
-
 # ANSI رنګونه
 WHITE_TEXT = "\033[97m"
 BOLD = "\033[1m"
