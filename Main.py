@@ -24,7 +24,6 @@ Y = "\x1b[38;5;208m"
 X = f"{W}[/]"
 
 #━━━━━━━━━━━━〔━>> REALISTIC FAKE LOADING WITH LOLCAT <<━〕━━━━━━━━━━━━#
-#━━━━━━━━━━━━〔━>> REALISTIC FAKE LOADING WITH LOLCAT <<━〕━━━━━━━━━━━━#
 def fake_loading():
     os.system('clear')
     
@@ -143,8 +142,10 @@ def fake_loading():
     
     print("\n")
     time.sleep(1.5)
-    os.system('clear') 
-os.system('clear')
+   os.system('clear')
+    
+#━━━━━━━━━━━━〔━>> اجرا کول <<━〕━━━━━━━━━━━━#
+fake_loading()
 
 logo = """
  ███████╗ █████╗ █████╗░░░██████╗  ██████╗░░░██████╗░░░░░░░░░░██╗███╗░░██╗░█████╗░░░░░  
